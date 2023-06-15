@@ -1,17 +1,20 @@
+body {
+  background-color: rgb(178, 247, 247);
+}
 .container {
   margin: 8%;
   font-family: "Ubuntu", sans-serif;
   border: solid;
   border-radius: 10px;
   padding: 10px 20px;
-  /* background-image: url("images/sky.jpg"); */
+  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .new-city {
   padding: 10px 5px;
 }
-.weather-info p {
+.weather-info #city-now {
   font-size: 30px;
 }
 .weather-info h1 {
@@ -41,4 +44,10 @@
 .footer {
   text-align: center;
   font-size: 12px;
+}
+.btn btn-primary {
+  background-color: rgb(52, 204, 204) !important;
+}
+input {
+  background-color: rgb(220, 247, 247);
 }
