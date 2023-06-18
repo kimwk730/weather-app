@@ -45,9 +45,14 @@ body {
   text-align: center;
   font-size: 12px;
 }
-.btn btn-primary {
-  background-color: rgb(52, 204, 204) !important;
-}
+/* #button-go #button-current {
+  background-color: rgb(52, 204, 204);
+} */
 input {
   background-color: rgb(220, 247, 247);
 }
+
+/* input[type="click"],
+input[type="submit"] {
+  background-color: rgb(52, 204, 204);
+} */

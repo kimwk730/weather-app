@@ -24,26 +24,14 @@
     <div class="container">
       <form id="change-city-form">
         <div class="row new-city">
-          <div class="mb-3 col-4">
-            <input
-              type="text"
-              class="form-control"
-              id="city-input"
-              placeholder="Change City"
-            />
+          <div class="col-auto">
+            <input type="text" id="city-input" placeholder="Change City" />
           </div>
           <div class="col-auto">
-            <button
-              type="submit"
-              class="btn btn-primary"
-              id="button-go"
-              value="Enter City"
-            >
-              Go!
-            </button>
+            <button type="submit" id="button-go" value="Enter City">Go!</button>
           </div>
           <div class="col-auto">
-            <button class="btn btn-primary" id="button-current">Current</button>
+            <button type="click" id="button-current">Current</button>
           </div>
         </div>
       </form>
@@ -52,8 +40,9 @@
           <span id="city-now"></span>
           <img src="images/sun.gif" width="50px" />
           <h1>
-            <span id="temp-now"></span><img src="images/celsius.gif" width="60px" />
-            ><img src="images/fahrenheit.gif" width="60px" />
+            <span id="temp-now"></span
+            ><img src="images/celsius.gif" width="60px" />
+            <img src="images/fahrenheit.gif" width="60px" />
           </h1>
           <h2>
             <div id="description-now"></div>
@@ -104,8 +93,13 @@
       <a href="https://github.com/kimwk730?tab=repositories" target="_blank"
         >Open-source code</a
       ><br />
-      by Won Kyoung Kim<br/>
-      thanks to <a href="https://www.flaticon.com/free-animated-icons/storm" target=_blank">flaticon</a>
+      by Won Kyoung Kim<br />
+      thanks to
+      <a
+        href="https://www.flaticon.com/free-animated-icons/storm"
+        target="_blank"
+        >flaticon</a
+      >
     </div>
     <script src="src/index.js"></script>
   </body>
