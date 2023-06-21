@@ -30,32 +30,25 @@ let year = now.getFullYear();
 let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
 let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
 
-let theTime = document.querySelector("#time-now");
-theTime.innerHTML = `${hours}:${minutes}`;
-
-let theDate = document.querySelector("#date-now");
-theDate.innerHTML = `${month} ${date}, ${year}`;
-
-let theDay = document.querySelector("#day-now");
-theDay.innerHTML = day;
+document.querySelector("#time-now").innerHTML = `${hours}:${minutes}`;
+document.querySelector("#date-now").innerHTML = `${month} ${date}, ${year}`;
+document.querySelector("#day-now").innerHTML = day;
 
 //
 
 function displayWeather(response) {
   console.log(response.data);
 
-  document.querySelector("#city-now").innerHTML = response.data.name;
+  celsiusTemp = response.data.main.temp;
 
+  document.querySelector("#city-now").innerHTML = response.data.name;
   document.querySelector("#temp-now").innerHTML = Math.round(
     response.data.main.temp
   );
-
   document.querySelector("#description-now").innerHTML =
     response.data.weather[0].description;
-
   document.querySelector("#humidity-now").innerHTML =
     response.data.main.humidity;
-
   document.querySelector("#wind-now").innerHTML = response.data.wind.speed;
 }
 //
@@ -88,6 +81,7 @@ form.addEventListener("submit", changeInfo);
 function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(getLocation);
 }
+
 function getLocation(position) {
   let theLongitude = position.coords.longitude;
   let theLatitude = position.coords.latitude;
@@ -100,3 +94,28 @@ function getLocation(position) {
 
 let currentLocationButton = document.querySelector("#button-current");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+function convertToFahenheit(event) {
+  document.querySelector("#temp-now").innerHTML = Math.round(
+    (celsiusTemp * 9) / 5 + 32
+  );
+}
+function convertToCelsius(event) {
+  document.querySelector("#temp-now").innerHTML = Math.round(celsiusTemp);
+}
+
+function changeUnitIcon(image) {
+  if (image.getAttribute("src") == "images/celsius.gif") {
+    image.setAttribute("src", "images/fahrenheit.gif");
+    convertToFahenheit();
+  } else {
+    image.setAttribute("src", "images/celsius.gif");
+    convertToCelsius();
+  }
+}
+
+let celsiusTemp = null;
+// let fahrenheitLink = document.querySelector("#unit-icon");
+// fahrenheitLink.addEventListener("click", convertToFarenheit);
+
+// onclick = "changeUnitIcon(this)";

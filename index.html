@@ -40,9 +40,15 @@
           <span id="city-now"></span>
           <img src="images/sun.gif" width="50px" />
           <h1>
-            <span id="temp-now"></span
-            ><img src="images/celsius.gif" width="60px" />
-            <img src="images/fahrenheit.gif" width="60px" />
+            <span id="temp-now"></span>
+            <a href="#"
+              ><img
+                src="images/celsius.gif"
+                width="60px"
+                id="unit-icon"
+                onclick="changeUnitIcon(this)"
+                ;
+            /></a>
           </h1>
           <h2>
             <div id="description-now"></div>
@@ -54,7 +60,7 @@
             km/h
           </h2>
         </div>
-        <div class="col etc">
+        <div class="col time-date-info">
           <h3>
             <div id="time-now">1:05 PM</div>
             <div id="date-now">May 12</div>
