@@ -66,7 +66,7 @@ function displayWeather(response) {
 function uploadWeatherIcon(weatherId) {
   let iconElement = document.querySelector("#main-weather-icon");
   if (weatherId === 800) {
-    iconElement.setAttribute("src", "images/suny.gif");
+    iconElement.setAttribute("src", "images/sun.gif");
   }
   if (weatherId === 801 || weatherId === 802) {
     iconElement.setAttribute("src", "images/partlycloudy.gif");
