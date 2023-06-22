@@ -35,11 +35,22 @@ document.querySelector("#date-now").innerHTML = `${month} ${date}, ${year}`;
 document.querySelector("#day-now").innerHTML = day;
 
 //
+window.onload = function getWeather(event) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric`;
+  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
+  let theApiUrl = `${apiUrl}&appid=${apiKey}`;
+
+  axios.get(theApiUrl).then(displayWeather);
+};
+
+//
 
 function displayWeather(response) {
   console.log(response.data);
 
   celsiusTemp = response.data.main.temp;
+
+  uploadWeatherIcon(response.data.weather[0].id);
 
   document.querySelector("#city-now").innerHTML = response.data.name;
   document.querySelector("#temp-now").innerHTML = Math.round(
@@ -52,14 +63,33 @@ function displayWeather(response) {
   document.querySelector("#wind-now").innerHTML = response.data.wind.speed;
 }
 //
-
-window.onload = function getWeather(event) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric`;
-  let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
-  let theApiUrl = `${apiUrl}&appid=${apiKey}`;
-
-  axios.get(theApiUrl).then(displayWeather);
-};
+function uploadWeatherIcon(weatherId) {
+  let iconElement = document.querySelector("#main-weather-icon");
+  if (weatherId === 800) {
+    iconElement.setAttribute("src", "images/suny.gif");
+  }
+  if (weatherId === 801 || weatherId === 802) {
+    iconElement.setAttribute("src", "images/partlycloudy.gif");
+  }
+  if (weatherId === 803 || weatherId === 804) {
+    iconElement.setAttribute("src", "images/cloudy.gif");
+  }
+  if (weatherId >= 700 && weatherId < 799) {
+    iconElement.setAttribute("src", "images/foggy.gif");
+  }
+  if (weatherId >= 600 && weatherId < 699) {
+    iconElement.setAttribute("src", "images/snow.gif");
+  }
+  if (weatherId >= 200 && weatherId < 299) {
+    iconElement.setAttribute("src", "images/storm.gif");
+  }
+  if (weatherId >= 300 && weatherId < 399) {
+    iconElement.setAttribute("src", "images/drizzle.gif");
+  }
+  if (weatherId >= 500 && weatherId < 599) {
+    iconElement.setAttribute("src", "images/rain.gif");
+  }
+}
 
 //
 
@@ -115,7 +145,3 @@ function changeUnitIcon(image) {
 }
 
 let celsiusTemp = null;
-// let fahrenheitLink = document.querySelector("#unit-icon");
-// fahrenheitLink.addEventListener("click", convertToFarenheit);
-
-// onclick = "changeUnitIcon(this)";
