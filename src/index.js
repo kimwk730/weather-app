@@ -45,6 +45,28 @@ window.onload = function getWeather(event) {
 
 //
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tues", "Wed", "Thur"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2 week">
+        <div class="forecast-day">${day}</div>
+        <img src="images/sun.gif" class="weather-icons" />
+        <span class="forecast-temp-max">80°F</span>
+        <span class="forecast-temp-min">70°F</span>
+      </div>
+    `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function displayWeather(response) {
   console.log(response.data);
 
@@ -145,3 +167,4 @@ function changeUnitIcon(image) {
 }
 
 let celsiusTemp = null;
+displayForecast();
