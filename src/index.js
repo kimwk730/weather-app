@@ -31,8 +31,8 @@ let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
 let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
 
 document.querySelector("#time-now").innerHTML = `${hours}:${minutes}`;
-document.querySelector("#date-now").innerHTML = `${month} ${date}, ${year}`;
 document.querySelector("#day-now").innerHTML = day;
+document.querySelector("#date-now").innerHTML = `${month} ${date}, ${year}`;
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);

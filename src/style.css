@@ -11,39 +11,49 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-.new-city {
-  padding: 10px 5px;
+form {
+  text-align: left;
+  padding: 12px;
 }
-.weather-info #city-now {
-  font-size: 30px;
+input,
+button {
+  border-radius: 5px;
+}
+#updatedTime {
+  font-size: 15px;
+  text-align: right;
+  margin-right: 0px;
+}
+h1 {
+  font-size: 50px;
+  text-align: center;
+  padding: 30px;
+}
+h1 #main-weather-icon #unit-icon {
+  display: inline;
 }
 .weather-info {
-  padding: 20px;
-}
-.weather-info h1 {
-  font-size: 50px;
-}
-.weather-info h2 {
-  font-size: 25px;
+  font-size: 20px;
+  text-align: right;
   text-decoration: none;
   text-transform: capitalize;
-  line-height: 1.5em;
+  line-height: 2em;
+  padding: 30px;
 }
 .time-date-info {
-  text-align: right;
-  line-height: 1.5em;
-  font-size: 25px;
-  position: abosolute;
-  bottom: 0;
-  right: 0;
-  padding: 20px;
+  font-size: 20px;
+  text-decoration: none;
+  text-transform: capitalize;
+  line-height: 2em;
+  padding: 30px;
 }
+
 .week {
   text-align: center;
   border: solid;
   border-radius: 10px;
   margin: 5px;
+  line-height: 3em;
 }
 .weather-icons {
   display: block;
@@ -55,14 +65,3 @@ body {
   text-align: center;
   font-size: 12px;
 }
-/* #button-go #button-current {
-  background-color: rgb(52, 204, 204);
-} */
-input {
-  background-color: rgb(220, 247, 247);
-}
-
-/* input[type="click"],
-input[type="submit"] {
-  background-color: rgb(52, 204, 204);
-} */

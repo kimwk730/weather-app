@@ -24,48 +24,44 @@
     <div class="container">
       <form id="change-city-form">
         <div class="row new-city">
-          <div class="col-auto">
+          <div class="col-8">
             <input type="text" id="city-input" placeholder="Change City" />
-          </div>
-          <div class="col-auto">
             <button type="submit" id="button-go" value="Enter City">Go!</button>
-          </div>
-          <div class="col-auto">
             <button type="click" id="button-current">Current</button>
           </div>
+          <div class="col-4" id="updateTime">Last updated</div>
         </div>
       </form>
-      <div class="row">
-        <div class="col weather-info">
+      <div id="title">
+        <h1>
+          <img src="" id="main-weather-icon" width="60px" />
           <span id="city-now"></span>
-          <img src="" id="main-weather-icon" width="50px" />
-          <h1>
-            <span id="temp-now"></span>
-            <a href="#"
-              ><img
-                src="images/celsius.gif"
-                width="60px"
-                id="unit-icon"
-                onclick="changeUnitIcon(this)"
-                ;
-            /></a>
-          </h1>
-          <h2>
-            <div id="description-now"></div>
-            Humidity:
-            <span id="humidity-now"></span>
-            %<br />
-            Wind:
-            <span id="wind-now"></span>
-            km/h
-          </h2>
+          <br />
+          <span id="temp-now" style="margin-left: 1em"></span>
+          <a href="#"
+            ><img
+              src="images/celsius.gif"
+              id="unit-icon"
+              width="60px"
+              onclick="changeUnitIcon(this)"
+              ;
+          /></a>
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col-6 weather-info">
+          <div id="description-now"></div>
+          Humidity:
+          <span id="humidity-now"></span>
+          %<br />
+          Wind:
+          <span id="wind-now"></span>
+          km/h
         </div>
-        <div class="col time-date-info">
-          <h3>
-            <div id="time-now"></div>
-            <div id="date-now"></div>
-            <div id="day-now"></div>
-          </h3>
+        <div class="col-6 time-date-info">
+          <div id="time-now"></div>
+          <div id="day-now"></div>
+          <div id="date-now"></div>
         </div>
       </div>
       <div class="forecast" id="forecast"></div>
