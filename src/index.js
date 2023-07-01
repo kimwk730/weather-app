@@ -34,6 +34,13 @@ document.querySelector("#time-now").innerHTML = `${hours}:${minutes}`;
 document.querySelector("#date-now").innerHTML = `${month} ${date}, ${year}`;
 document.querySelector("#day-now").innerHTML = day;
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 //
 window.onload = function getWeather(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric`;
@@ -73,24 +80,30 @@ function getForecast(coordinates) {
 }
 
 function displayForecast(response) {
-  console.log(response.data);
-  let forecastElement = document.querySelector("#forecast");
+  let forecast = response.data.daily;
+  console.log(response.data.daily);
 
-  let days = ["Mon", "Tues", "Wed", "Thur"];
+  let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
 
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
       <div class="col-2 week">
-        <div class="forecast-day">${day}</div>
+        <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
         <img src="images/sun.gif" class="weather-icons" />
-        <span class="forecast-temp-max"> 80°F </span>
-        <span class="forecast-temp-min"> 70°F </span>
+        <span class="forecast-temp-max"> ${Math.round(
+          forecastDay.temp.max
+        )}°C </span>
+        <span class="forecast-temp-min"> ${Math.round(
+          forecastDay.temp.min
+        )}°C </span>
       </div>
     `;
+    }
   });
 
   forecastHTML = forecastHTML + `</div>`;
