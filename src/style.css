@@ -6,16 +6,20 @@ body {
   font-family: "Ubuntu", sans-serif;
   border: solid;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 20px 20px;
   background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .new-city {
   padding: 10px 5px;
 }
 .weather-info #city-now {
   font-size: 30px;
+}
+.weather-info {
+  padding: 20px;
 }
 .weather-info h1 {
   font-size: 50px;
@@ -26,10 +30,14 @@ body {
   text-transform: capitalize;
   line-height: 1.5em;
 }
-.time-date-info h3 {
+.time-date-info {
   text-align: right;
   line-height: 1.5em;
-  font-size: 20px;
+  font-size: 25px;
+  position: abosolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
 }
 .week {
   text-align: center;
@@ -42,6 +50,7 @@ body {
   margin: 10px auto;
   width: 40px;
 }
+
 .footer {
   text-align: center;
   font-size: 12px;

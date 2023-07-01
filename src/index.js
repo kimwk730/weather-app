@@ -72,44 +72,8 @@ function displayWeather(response) {
   getForecast(response.data.coord);
 }
 
-function getForecast(coordinates) {
-  let apiKey = "ff1d9ea9376b5c27a82e04fc2b2abdbb";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${apiKey}`;
-
-  axios.get(apiUrl).then(displayForecast);
-}
-
-function displayForecast(response) {
-  let forecast = response.data.daily;
-  console.log(response.data.daily);
-
-  let forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
-
-  forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
-      forecastHTML =
-        forecastHTML +
-        `
-      <div class="col-2 week">
-        <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
-        <img src="images/sun.gif" class="weather-icons" />
-        <span class="forecast-temp-max"> ${Math.round(
-          forecastDay.temp.max
-        )}°C </span>
-        <span class="forecast-temp-min"> ${Math.round(
-          forecastDay.temp.min
-        )}°C </span>
-      </div>
-    `;
-    }
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
 //
+
 function uploadWeatherIcon(weatherId) {
   let iconElement = document.querySelector("#main-weather-icon");
   if (weatherId === 800) {
@@ -140,6 +104,49 @@ function uploadWeatherIcon(weatherId) {
 
 //
 
+function getForecast(coordinates) {
+  let apiKey = "ff1d9ea9376b5c27a82e04fc2b2abdbb";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${apiKey}`;
+
+  axios.get(apiUrl).then(displayForecast);
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(response.data.daily);
+
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col week">
+        <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
+        <img src="images/storm.gif" class="weather-icons" id="forecast-icon/>
+        <span class="forecast-temp-max"> ${Math.round(
+          forecastDay.temp.max
+        )}°C </span> | 
+        <span class="forecast-temp-min"> ${Math.round(
+          forecastDay.temp.min
+        )}°C </span>
+      </div>
+    `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+//
+
+let form = document.querySelector("#change-city-form");
+form.addEventListener("submit", changeInfo);
+
 function changeInfo(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city-input").value;
@@ -150,18 +157,18 @@ function changeInfo(event) {
   axios.get(theApiUrl).then(displayWeather);
 }
 
-let form = document.querySelector("#change-city-form");
-form.addEventListener("submit", changeInfo);
-
 //
+
+let currentLocationButton = document.querySelector("#button-current");
+currentLocationButton.addEventListener("click", getCurrentLocation);
 
 function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(getLocation);
 }
 
 function getLocation(position) {
-  let theLongitude = position.coords.longitude;
   let theLatitude = position.coords.latitude;
+  let theLongitude = position.coords.longitude;
   let apiKey = "ff1d9ea9376b5c27a82e04fc2b2abdbb";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${theLatitude}&lon=${theLongitude}&units=metric`;
   let theApiUrl = `${apiUrl}&appid=${apiKey}`;
@@ -169,8 +176,9 @@ function getLocation(position) {
   axios.get(theApiUrl).then(displayWeather);
 }
 
-let currentLocationButton = document.querySelector("#button-current");
-currentLocationButton.addEventListener("click", getCurrentLocation);
+//
+
+let celsiusTemp = null;
 
 function convertToFahenheit(event) {
   document.querySelector("#temp-now").innerHTML = Math.round(
@@ -190,5 +198,3 @@ function changeUnitIcon(image) {
     convertToCelsius();
   }
 }
-
-let celsiusTemp = null;
