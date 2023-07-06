@@ -57,7 +57,11 @@ function displayWeather(response) {
 
   celsiusTemp = response.data.main.temp;
 
-  uploadWeatherIcon(response.data.weather[0].id);
+  let iconElement = document.querySelector("#main-weather-icon");
+  iconElement.setAttribute(
+    "src",
+    `images/${getIcon(response.data.weather[0].id)}.gif`
+  );
 
   document.querySelector("#city-now").innerHTML = response.data.name;
   document.querySelector("#temp-now").innerHTML = Math.round(
@@ -74,31 +78,30 @@ function displayWeather(response) {
 
 //
 
-function uploadWeatherIcon(weatherId) {
-  let iconElement = document.querySelector("#main-weather-icon");
+function getIcon(weatherId) {
   if (weatherId === 800) {
-    iconElement.setAttribute("src", "images/sun.gif");
+    return "sun";
   }
   if (weatherId === 801 || weatherId === 802) {
-    iconElement.setAttribute("src", "images/partlycloudy.gif");
+    return "partlycloudy";
   }
   if (weatherId === 803 || weatherId === 804) {
-    iconElement.setAttribute("src", "images/cloudy.gif");
+    return "cloudy";
   }
   if (weatherId >= 700 && weatherId < 799) {
-    iconElement.setAttribute("src", "images/foggy.gif");
+    return "foggy";
   }
   if (weatherId >= 600 && weatherId < 699) {
-    iconElement.setAttribute("src", "images/snow.gif");
+    return "snow";
   }
   if (weatherId >= 200 && weatherId < 299) {
-    iconElement.setAttribute("src", "images/storm.gif");
+    return "storm";
   }
   if (weatherId >= 300 && weatherId < 399) {
-    iconElement.setAttribute("src", "images/drizzle.gif");
+    return "drizzle";
   }
   if (weatherId >= 500 && weatherId < 599) {
-    iconElement.setAttribute("src", "images/rain.gif");
+    return "rain";
   }
 }
 
@@ -126,7 +129,9 @@ function displayForecast(response) {
         `
       <div class="col week">
         <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
-        <img src="images/storm.gif" class="weather-icons" id="forecast-icon/>
+        <img src= "images/${getIcon(
+          forecastDay.weather[0].id
+        )}.gif" class="weather-icons" id="forecast-icon/>
         <span class="forecast-temp-max"> ${Math.round(
           forecastDay.temp.max
         )}°C </span> | 
@@ -135,6 +140,11 @@ function displayForecast(response) {
         )}°C </span>
       </div>
     `;
+      // let iconElement = document.querySelector("#forecast-icon");
+      // iconElement.setAttribute(
+      //   "src",
+      //   `images/${getIcon(forecastDay.weather[0].id)}.gif`
+      // );
     }
   });
 
