@@ -29,7 +29,9 @@
             <button type="submit" id="button-go" value="Enter City">Go!</button>
             <button type="click" id="button-current">Current</button>
           </div>
-          <div class="col-4" id="updateTime">Last updated</div>
+          <div class="col-4">
+            <span id="dt-now"></span>
+          </div>
         </div>
       </form>
       <div id="title">
@@ -48,21 +50,15 @@
           /></a>
         </h1>
       </div>
-      <div class="row">
-        <div class="col-6 weather-info">
-          <div id="description-now"></div>
-          Humidity:
-          <span id="humidity-now"></span>
-          %<br />
-          Wind:
-          <span id="wind-now"></span>
-          km/h
-        </div>
-        <div class="col-6 time-date-info">
-          <div id="time-now"></div>
-          <div id="day-now"></div>
-          <div id="date-now"></div>
-        </div>
+
+      <div class="weather-info">
+        <div id="description-now"></div>
+        Humidity:
+        <span id="humidity-now"></span>
+        %<br />
+        Wind:
+        <span id="wind-now"></span>
+        km/h
       </div>
       <div class="forecast" id="forecast"></div>
     </div>

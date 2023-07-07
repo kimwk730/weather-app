@@ -1,38 +1,41 @@
-let now = new Date();
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
-let day = days[now.getDay()];
-let month = months[now.getMonth()];
-let date = now.getDate();
-let year = now.getFullYear();
-let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
-let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let day = days[now.getDay()];
+  let month = months[now.getMonth()];
+  let date = now.getDate();
+  let year = now.getFullYear();
+  let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
+  let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+  console.log(now);
 
-document.querySelector("#time-now").innerHTML = `${hours}:${minutes}`;
-document.querySelector("#day-now").innerHTML = day;
-document.querySelector("#date-now").innerHTML = `${month} ${date}, ${year}`;
+  document.querySelector(
+    "#dt-now"
+  ).innerHTML = `${hours}:${minutes}   ${month} ${date}, ${year}   ${day}`;
+}
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
@@ -72,6 +75,8 @@ function displayWeather(response) {
   document.querySelector("#humidity-now").innerHTML =
     response.data.main.humidity;
   document.querySelector("#wind-now").innerHTML = response.data.wind.speed;
+
+  formatDate(response.data.dt * 1000);
 
   getForecast(response.data.coord);
 }
@@ -140,11 +145,6 @@ function displayForecast(response) {
         )}°C </span>
       </div>
     `;
-      // let iconElement = document.querySelector("#forecast-icon");
-      // iconElement.setAttribute(
-      //   "src",
-      //   `images/${getIcon(forecastDay.weather[0].id)}.gif`
-      // );
     }
   });
 
@@ -208,3 +208,5 @@ function changeUnitIcon(image) {
     convertToCelsius();
   }
 }
+
+axios.get(theApiUrl).then(displayWeather);

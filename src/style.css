@@ -1,25 +1,45 @@
 body {
-  background-color: rgb(178, 247, 247);
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(52, 204, 204) 0%,
+    rgb(198, 232, 221) 100.2%
+  );
 }
 .container {
-  margin: 8%;
+  margin: 8% auto 3% auto;
   font-family: "Ubuntu", sans-serif;
   border: solid;
   border-radius: 10px;
-  padding: 20px 20px;
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
+  border-width: 1px;
+  padding: 40px 20px 20px 20px;
+  display: block;
+  background: white;
+  max-width: 800px;
 }
 form {
   text-align: left;
   padding: 12px;
 }
-input,
+::placeholder {
+  color: rgb(52, 204, 204);
+}
+input {
+  border-radius: 5px;
+  border-width: 1px;
+  background: white;
+}
 button {
   border-radius: 5px;
+  border-width: 1px;
+  color: white;
+  background: rgb(52, 204, 204);
+  transition-duration: 0.2s;
 }
-#updatedTime {
+button:hover {
+  color: rgb(52, 204, 204);
+  background: white;
+}
+#ut-now {
   font-size: 15px;
   text-align: right;
   margin-right: 0px;
@@ -28,20 +48,14 @@ h1 {
   font-size: 50px;
   text-align: center;
   padding: 30px;
+  line-height: 2em;
 }
 h1 #main-weather-icon #unit-icon {
   display: inline;
 }
 .weather-info {
   font-size: 20px;
-  text-align: right;
-  text-decoration: none;
-  text-transform: capitalize;
-  line-height: 2em;
-  padding: 30px;
-}
-.time-date-info {
-  font-size: 20px;
+  text-align: center;
   text-decoration: none;
   text-transform: capitalize;
   line-height: 2em;
@@ -52,6 +66,7 @@ h1 #main-weather-icon #unit-icon {
   text-align: center;
   border: solid;
   border-radius: 10px;
+  border-width: 1px;
   margin: 5px;
   line-height: 3em;
 }
