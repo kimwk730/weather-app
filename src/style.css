@@ -39,6 +39,11 @@ button:hover {
   color: rgb(52, 204, 204);
   background: white;
 }
+.button-icon {
+  width: 20px;
+  top: 50%;
+  left: 50%;
+}
 #ut-now {
   font-size: 15px;
   text-align: right;
@@ -79,4 +84,11 @@ h1 #main-weather-icon #unit-icon {
 .footer {
   text-align: center;
   font-size: 12px;
+}
+.footer-logo {
+  width: 25px;
+  transition-duration: 0.2s;
+}
+.footer-logo:hover {
+  width: 35px;
 }
