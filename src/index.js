@@ -1,50 +1,3 @@
-function formatDate(timestamp) {
-  let now = new Date(timestamp);
-
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-  let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  let day = days[now.getDay()];
-  let month = months[now.getMonth()];
-  let date = now.getDate();
-  let year = now.getFullYear();
-  let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
-  let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
-  console.log(now);
-
-  document.querySelector(
-    "#dt-now"
-  ).innerHTML = `${hours}:${minutes}   ${month} ${date}, ${year}   ${day}`;
-}
-
-function formatDay(timestamp) {
-  let date = new Date(timestamp * 1000);
-  let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[day];
-}
-
-//
 window.onload = function getWeather(event) {
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Seoul&units=metric`;
   let apiKey = "3bc520cc14bbdedfd7e45158f2ef0439";
@@ -56,8 +9,6 @@ window.onload = function getWeather(event) {
 //
 
 function displayWeather(response) {
-  console.log(response.data);
-
   celsiusTemp = response.data.main.temp;
 
   let iconElement = document.querySelector("#main-weather-icon");
@@ -77,7 +28,6 @@ function displayWeather(response) {
   document.querySelector("#wind-now").innerHTML = response.data.wind.speed;
 
   formatDate(response.data.dt * 1000);
-
   getForecast(response.data.coord);
 }
 
@@ -112,6 +62,45 @@ function getIcon(weatherId) {
 
 //
 
+function formatDate(timestamp) {
+  let now = new Date(timestamp);
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let day = days[now.getDay()];
+  let month = months[now.getMonth()];
+  let date = now.getDate();
+  let year = now.getFullYear();
+  let hours = (now.getHours() < 10 ? "0" : "") + now.getHours();
+  let minutes = (now.getMinutes() < 10 ? "0" : "") + now.getMinutes();
+
+  document.querySelector(
+    "#dt-now"
+  ).innerHTML = `${month} ${date}, ${year} ${day} ${hours}:${minutes} `;
+}
+
+//
+
 function getForecast(coordinates) {
   let apiKey = "ff1d9ea9376b5c27a82e04fc2b2abdbb";
   let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,minutely,hourly,alerts&units=metric&appid=${apiKey}`;
@@ -119,9 +108,10 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 
+//
+
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(response.data.daily);
 
   let forecastElement = document.querySelector("#forecast");
 
@@ -150,6 +140,14 @@ function displayForecast(response) {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+}
+
+//
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
 }
 
 //
@@ -198,7 +196,6 @@ function convertToFahenheit(event) {
 function convertToCelsius(event) {
   document.querySelector("#temp-now").innerHTML = Math.round(celsiusTemp);
 }
-
 function changeUnitIcon(image) {
   if (image.getAttribute("src") == "images/celsius.gif") {
     image.setAttribute("src", "images/fahrenheit.gif");
@@ -208,5 +205,3 @@ function changeUnitIcon(image) {
     convertToCelsius();
   }
 }
-
-axios.get(theApiUrl).then(displayWeather);
